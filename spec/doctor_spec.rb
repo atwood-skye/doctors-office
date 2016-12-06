@@ -23,4 +23,15 @@ describe 'Doctor' do
       expect(task1).to(eq(task2))
     end
   end
+
+  describe "#find_patients" do
+    it "finds the patients assigned to the selected doctor" do
+      new_doctor = Doctor.new({name: "Carlos", speciality: "Rhinoplasty", id: 1})
+      new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: 1, doctor_id: 1})
+      new_patient.save
+      new_patient = Patient.all[0]
+      new_patient.set_doctor(1)
+      expect(new_doctor.find_patients).to eq([new_patient])
+    end
+  end
 end

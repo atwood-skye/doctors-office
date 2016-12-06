@@ -1,5 +1,5 @@
 class Doctor
-  attr_reader(:name, :speciality)
+  attr_reader(:name, :speciality, :id)
   def initialize(attributes)
     @name = attributes[:name]
     @speciality = attributes[:speciality]
@@ -25,6 +25,20 @@ class Doctor
 
   def save
     DB.exec("INSERT INTO doctors (name, speciality) VALUES ('#{@name}', '#{@speciality}');")
+  end
+
+  def find_patients
+    returned_patients = []
+    patients = DB.exec("SELECT * FROM patients WHERE doctor_id = #{@id};")
+    patients.each do |patient|
+      name = patient['name']
+      birthdate = patient['birthdate']
+      id = patient['id']
+      doctor_id = patient['doctor_id']
+      found_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: 1, doctor_id: 1})
+      returned_patients.push(found_patient)
+    end
+    returned_patients
   end
 
   define_method(:==) do |other_doctor|

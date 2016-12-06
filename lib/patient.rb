@@ -25,8 +25,8 @@ class Patient
     DB.exec("INSERT INTO patients (name, birthdate) VALUES ('#{@name}', '#{@birthdate}');")
   end
 
-  def set_doctor(doctor_id)
-    @doctor_id = doctor_id
+  def set_doctor(new_doctor_id)
+    @doctor_id = new_doctor_id
     DB.exec("UPDATE patients SET doctor_id = #{@doctor_id} WHERE id = #{@id};")
   end
 

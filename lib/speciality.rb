@@ -34,9 +34,9 @@ class Speciality
     returned_doctors
   end
 
-  define_method(:==) do |other_speciality|
+  def ==(other_speciality)
     booleans = []
-      booleans.push(self.speciality.==(other_speciality.speciality))
+      booleans.push(self.speciality == other_speciality.speciality)
     booleans.all?
   end
 end

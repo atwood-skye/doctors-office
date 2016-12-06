@@ -34,22 +34,22 @@ class Doctor
 
   def find_patients
     returned_patients = []
-    patients = DB.exec("SELECT * FROM patients WHERE doctor_id = #{@id};")
+    patients = DB.exec("SELECT * FROM patients WHERE doctor_id = #{@id} ORDER BY name ASC;")
     patients.each do |patient|
       name = patient['name']
       birthdate = patient['birthdate']
-      id = patient['id']
-      doctor_id = patient['doctor_id']
-      found_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: 1, doctor_id: 1})
+      id = patient['id'].to_i
+      doctor_id = patient['doctor_id'].to_i
+      found_patient = Patient.new({name: name, birthdate: birthdate, id: id, doctor_id: doctor_id})
       returned_patients.push(found_patient)
     end
     returned_patients
   end
 
-  define_method(:==) do |other_doctor|
+  def ==(other_doctor)
     booleans = []
-      booleans.push(self.name.==(other_doctor.name))
-      booleans.push(self.speciality_id.==(other_doctor.speciality_id))
+      booleans.push(self.name == other_doctor.name)
+      booleans.push(self.speciality_id == other_doctor.speciality_id)
     booleans.all?
   end
 end

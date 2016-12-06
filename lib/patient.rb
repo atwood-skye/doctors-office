@@ -14,7 +14,7 @@ class Patient
       name = patient['name']
       birthdate = patient['birthdate']
       id = patient['id'].to_i
-      doctor_id = patient['doctor_id']
+      doctor_id = patient['doctor_id'].to_i
       new_patient = Patient.new({name: name, birthdate: birthdate, id: id, doctor_id: doctor_id})
       returned_patients.push(new_patient)
     end
@@ -44,11 +44,11 @@ class Patient
     returned_patients
   end
 
-  define_method(:==) do |other_patient|
+  def ==(other_patient)
     booleans = []
-      booleans.push(self.name.==(other_patient.name))
-      booleans.push(self.birthdate.==(other_patient.birthdate))
-      booleans.push(self.doctor_id.==(other_patient.doctor_id))
+      booleans.push(self.name == other_patient.name)
+      booleans.push(self.birthdate == other_patient.birthdate)
+      booleans.push(self.doctor_id == other_patient.doctor_id)
     booleans.all?
   end
 

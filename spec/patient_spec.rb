@@ -19,7 +19,7 @@ describe 'Patient' do
 
   describe '#save' do
     it 'will save a new patient to the database' do
-      new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: nil, doctor_id: nil})
+      new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: nil, doctor_id: 0})
       new_patient.save
       expect(Patient.all).to eq([new_patient])
     end

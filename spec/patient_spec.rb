@@ -8,6 +8,15 @@ describe 'Patient' do
     end
   end
 
+  describe '.find' do
+    it 'will set a find a patient by id' do
+      new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: nil, doctor_id: nil})
+      new_patient.save
+      id = Patient.all[0].id
+      expect(Patient.find(id)).to eq([new_patient])
+    end
+  end
+
   describe '#save' do
     it 'will save a new patient to the database' do
       new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: nil, doctor_id: nil})

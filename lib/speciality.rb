@@ -7,7 +7,7 @@ class Speciality
 
   def self.all
     returned_specialities = []
-    specialities = DB.exec("SELECT * FROM specialities;")
+    specialities = DB.exec("SELECT * FROM specialities ORDER BY speciality;")
     specialities.each do |current_speciality|
       speciality = current_speciality['speciality']
       id = current_speciality['id'].to_i
@@ -23,7 +23,7 @@ class Speciality
 
   def find_doctors
     returned_doctors = []
-    doctors = DB.exec("SELECT * FROM doctors WHERE speciality_id = #{@id};")
+    doctors = DB.exec("SELECT * FROM doctors WHERE speciality_id = #{@id} ORDER BY name;")
     doctors.each do |doctor|
       name = doctor['name']
       id = doctor['id']
@@ -32,6 +32,14 @@ class Speciality
       returned_doctors.push(found_doctor)
     end
     returned_doctors
+  end
+
+  def self.find(id)
+    found_speciality = nil
+    Speciality.all.each do |speciality|
+      speciality.id == id ? found_speciality = speciality : false
+    end
+    found_speciality
   end
 
   def ==(other_speciality)

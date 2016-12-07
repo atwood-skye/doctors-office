@@ -9,7 +9,7 @@ class Patient
 
   def self.all
     returned_patients = []
-    patients = DB.exec("SELECT * FROM patients;")
+    patients = DB.exec("SELECT * FROM patients ORDER BY name;")
     patients.each do |patient|
       name = patient['name']
       birthdate = patient['birthdate']

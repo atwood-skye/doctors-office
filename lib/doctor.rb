@@ -8,7 +8,7 @@ class Doctor
 
   def self.all
     returned_doctors = []
-    doctors = DB.exec("SELECT * FROM doctors;")
+    doctors = DB.exec("SELECT * FROM doctors ORDER BY name;")
     doctors.each do |doctor|
       name = doctor['name']
       speciality_id = doctor['speciality_id'].to_i

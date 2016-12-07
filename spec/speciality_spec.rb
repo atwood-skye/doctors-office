@@ -24,6 +24,16 @@ describe 'Speciality' do
     end
   end
 
+  describe ".find"  do
+    it "is the finds a speciality from id" do
+      task1 = Speciality.new({:speciality => "Carlos", id: 1})
+      task1.save
+      task1 = Speciality.all[0]
+      id = task1.id.to_i
+      expect(Speciality.find(id)).to(eq(task1))
+    end
+  end
+
   describe "#find_doctors" do
     it "finds the doctors assigned to the selected speciality" do
       new_speciality = Speciality.new({speciality: "Carlos", id: 1})

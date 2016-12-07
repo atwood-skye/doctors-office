@@ -29,7 +29,7 @@ describe 'Doctor' do
       new_doctor = Doctor.new({name: "Carlos", speciality_id: 1, id: 1})
       new_patient = Patient.new({name: "Patricia", birthdate: '1850-12-21 00:00:00', id: nil, doctor_id: 1})
       new_patient.save
-      new_patient2 = Patient.new({name: "Zeff", birthdate: '2250-6-2 00:10:00',id: nil, doctor_id: 1})
+      new_patient2 = Patient.new({name: "Jeff", birthdate: '2250-6-2 00:10:00',id: nil, doctor_id: 1})
       new_patient2.save
       Patient.all.each do |patient|
         patient.set_doctor(1)

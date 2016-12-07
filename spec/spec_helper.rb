@@ -5,7 +5,7 @@ require("patient")
 require 'pry'
 require 'speciality'
 
-DB = PG.connect({:dbname => 'doctors_office'})
+DB = PG.connect({:dbname => 'doctors_office_test'})
 
 RSpec.configure do |config|
   config.after(:each) do

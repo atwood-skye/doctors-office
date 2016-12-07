@@ -1,0 +1,9 @@
+<ul>
+  <% @specialities.each do |speciality| %>
+  <li><a href="/speciality/<%= speciality.id %>"><%= speciality.speciality %></a></li>
+  <% end %>
+</ul>
+<form action="/specialities" method="post">
+  <input class="form-control" type="text" name="speciality" placeholder="speciality">
+  <button class="btn btn-default" type="submit" name="button">Submit</button>
+</form>
